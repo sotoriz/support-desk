@@ -4,7 +4,7 @@
   "description": "Support Desk App",
   "license": "MIT",
   "author": "Sotoris Tech",
-  "type": "module",
+  "type": "commomjs",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",

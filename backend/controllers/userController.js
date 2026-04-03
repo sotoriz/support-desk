@@ -50,7 +50,6 @@ const registerUser = asyncHandler(async(req, res)=>{
         throw new Error('Invalid user data')
     }
 
-
     // res.send('Register Route')
 }
 
@@ -64,7 +63,7 @@ const loginUser = asyncHandler(async(req, res)=>{
     const user = await User.findOne({email})
 
     //  Check user and password match
-    if(User && (await bcrypt.compare(password, user.password))){
+    if(user && (await bcrypt.compare(password, user.password))){
         res.status(200).json({
             _id: user._id,
             name: user.name,
@@ -75,9 +74,10 @@ const loginUser = asyncHandler(async(req, res)=>{
         res.status(401)
         throw new Error('Invalid Credentials')
     }
-    res.send('Login Route')
+    // res.send('Login Route')
 })
 
+// Generate JWT
 const generateToken = (id)=>{
     return jwt.sign({id}, process.env.JWT_SECRET,{
         expiresIn: '30d'

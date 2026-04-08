@@ -26,12 +26,10 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
-app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`))
-
-app.get('/', (req, res)=>{
-    // res.send('API is running...')
-    res.status(200).json({message: 'Welcome to Support Desk API'})
-})
+// app.get('/', (req, res)=>{
+//     // res.send('API is running...')
+//     res.status(200).json({message: 'Welcome to Support Desk API'})
+// })
 
 // fetch all users
 // app.post('/api/users/', (req, res)=>{
@@ -59,15 +57,16 @@ if(process.env.NODE_ENV === 'production'){
     // res.sendFile(__dirname, '../', 'frontend', 'build', 'index.html'))
     
 
-    app.get('*', (req, res) => 
+    app.use((req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-    )
+})
 }else{
     app.get('/', (req, res)=>{
         res.status(200).json({message: 'Welcome to Support Desk API'})
     })
 }
 
+// Error handler
 app.use(errorHandler)
 
 app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`))

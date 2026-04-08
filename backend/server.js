@@ -1,5 +1,6 @@
 
 const express = require('express')
+const cors = require("cors");
 const res = require('express/lib/response')
 const dotenv = require('dotenv').config()
 const colors = require('colors')
@@ -14,6 +15,13 @@ const {errorHandler} = require('./middleware/errorMiddleware')
 connectDB()
 
 const app = express()
+
+// Enable CORS for all requests
+app.use(cors({
+  origin: "https://support-desk-static.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
@@ -40,6 +48,7 @@ app.get('/', (req, res)=>{
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/tickets', require('./routes/ticketRoute'))
 app.use('/api/tickets/:ticketId/notes', require('./routes/noteRoute'));
+
 
 // Serve Frontend
 if(process.env.NODE_ENV === 'production'){

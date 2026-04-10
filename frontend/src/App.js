@@ -11,7 +11,7 @@ import NewTicket from './pages/NewTicket';
 import PrivateRoute from './pages/components/PrivateRoute';
 import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
-import API_URL from "./config";
+import API_URL from "../config";
 import { useEffect } from "react";
 
 function App() {

@@ -1,3 +1,3 @@
-const API_URL = "https://support-desk-a3dr.onrender.com";
+const API_URL = "https://support-desk-vrzv.onrender.com";
 
 export default API_URL;

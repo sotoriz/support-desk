@@ -24,6 +24,11 @@ app.use(cors({
 }));
 
 app.use(express.json())
+
+// ✅ Your routes come AFTER
+app.get("/api/data", (req, res) => {
+  res.json({ message: "API working" });
+});
 app.use(express.urlencoded({extended:false}))
 
 // app.get('/', (req, res)=>{

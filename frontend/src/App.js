@@ -12,12 +12,17 @@ import PrivateRoute from './pages/components/PrivateRoute';
 import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
 import API_URL from "./config";
+import { useEffect } from "react";
 
 function App() {
 
-fetch(`${API_URL}/api/data`)
-  .then(res => res.json())
-  .then(data => console.log(data));
+useEffect(() => {
+  fetch(`${API_URL}/api/tickets`, {
+    credentials: "include"
+  })
+    .then(res => res.json())
+    .then(data => console.log(data));
+}, []);
   
   return (
     <>

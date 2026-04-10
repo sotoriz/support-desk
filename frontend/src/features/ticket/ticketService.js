@@ -1,6 +1,10 @@
 import axios from "axios";
+import API_URL from "../../config";
 
-const API_URL = '/api/tickets/'
+// const API_URL = '/api/tickets/'
+
+// ticket connection on deployment
+const BASE_URL = `${API_URL}/api/tickets`
 
 const createTicket = async(ticketData,token)=>{
     const config = {
@@ -8,7 +12,9 @@ const createTicket = async(ticketData,token)=>{
                 Authorization:  `Bearer ${token}`
         }
     }
-    const response = await axios.post(API_URL, ticketData, config)
+    const response = await axios.post(BASE_URL, ticketData, config, {
+       withCredentials: true
+    })
     return response.data;
 }
 
@@ -19,19 +25,21 @@ const getTickets = async(token)=>{
                 Authorization:  `Bearer ${token}`
         }
     }
-    const response = await axios.get(API_URL, config)
+    const response = await axios.get(BASE_URL, config)
     
     return response.data
 }
 
-// Get Ticket Details
+// Get single Ticket Details
 const getTicket = async(ticketId, token)=>{
     const config = {
         headers: {
                 Authorization:  `Bearer ${token}`
         }
     }
-    const response = await axios.get(API_URL + ticketId, config)
+    const response = await axios.get(BASE_URL + ticketId, config, {
+        withCredentials: true
+    })
     
     return response.data
 }
@@ -44,7 +52,7 @@ const closeTicket = async(ticketId, token)=>{
         }
     }
     const response = await axios.put(
-        API_URL + ticketId, 
+        BASE_URL + ticketId, 
         {status: 'closed'}, 
         config
     )

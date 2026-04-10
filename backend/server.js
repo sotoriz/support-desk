@@ -29,6 +29,7 @@ app.use(express.json())
 app.get("/api/users", (req, res) => {
   res.json({ message: "API working" });
 });
+
 app.use(express.urlencoded({extended:false}))
 
 // app.get('/', (req, res)=>{

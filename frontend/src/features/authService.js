@@ -1,10 +1,15 @@
 import axios from 'axios'
+import API_URL from '../../config' 
 
-const API_URL = '/api/users'
+
+// const API_URL = '/api/users'
+// RENDER DEPLOYMENT
+const BASE_URL = `${API_URL}/api/users`
+
 
 //  Register user
 const register = async(userData)=>{
-    const response = await axios.post(API_URL, userData)
+    const response = await axios.post(BASE_URL, userData)
 
     if(response.data){
         localStorage.setItem('user', JSON.stringify(response.data))
@@ -14,7 +19,7 @@ const register = async(userData)=>{
 
 //  Login user
 const login = async(userData)=>{
-    const response = await axios.post(API_URL + '/login', userData)
+    const response = await axios.post(BASE_URL + '/login', userData)
 
     if(response.data){
         localStorage.setItem('user', JSON.stringify(response.data))

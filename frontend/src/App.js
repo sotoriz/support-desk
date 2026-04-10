@@ -11,8 +11,14 @@ import NewTicket from './pages/NewTicket';
 import PrivateRoute from './pages/components/PrivateRoute';
 import Tickets from './pages/Tickets';
 import Ticket from './pages/Ticket';
+import API_URL from "./config";
 
 function App() {
+
+fetch(`${API_URL}/api/data`)
+  .then(res => res.json())
+  .then(data => console.log(data));
+  
   return (
     <>
       <Router>

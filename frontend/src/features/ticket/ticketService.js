@@ -37,9 +37,7 @@ const getTicket = async(ticketId, token)=>{
                 Authorization:  `Bearer ${token}`
         }
     }
-    const response = await axios.get(BASE_URL + ticketId, config, {
-        withCredentials: true
-    })
+    const response = await axios.get(`${BASE_URL}/${ticketId}`, config)
     
     return response.data
 }
@@ -52,8 +50,8 @@ const closeTicket = async(ticketId, token)=>{
         }
     }
     const response = await axios.put(
-        BASE_URL + ticketId, 
-        {status: 'closed'}, 
+        `${BASE_URL}/${ticketId}`, 
+        { status: "closed" }, 
         config
     )
     
